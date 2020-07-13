@@ -34,5 +34,9 @@ elif args[0] in ["remove","-R","--remove"]:
     args.pop(0)
     os.system(f"sudo pacman -R {' '.join(args)}")
 
+elif args[0] in ["reinstall","-RS","--reinstall"]:
+    args.pop(0)
+    os.system(f"sudo pacman -R {' '.join(args)}; sudo pacman -S {' '.join(args)}")
+              
 else:
     print("Invalid Command")
