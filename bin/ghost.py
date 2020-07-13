@@ -17,8 +17,15 @@ elif args[0] in ["install","-S","-i"]:
     
 elif args[0] in ["upgrade","update","-u"]:
     args.pop(0)
-    os.system(f"sudo pacman -Syu {' '.join(args)}")
-    
+    if args[0] == "ghost":
+        os.system("rm -rf /tmp/ghostinstall")
+        os.system("git clone https://github.com/MarcosLp69/ghost.git /tmp/ghostinstall")
+        os.system("chmod +x /tmp/ghostinstall/install.sh")
+        os.system("clear")
+        os.system("/tmp/ghostinstall/install.sh")
+    else:
+        os.system(f"sudo pacman -Syu {' '.join(args)}")
+
 elif args[0] in ["aur","-a","-aur"]:
     args.pop(0)
     os.system(f"yay -S {' '.join(args)}")
